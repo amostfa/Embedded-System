@@ -32,5 +32,40 @@ void Action(void){      // function under test
 }
 
 
+II. Wait
+
+You can write a function that wait till the systick is counted till 0 from a reloaded value (). 
+
+While ( check the flag ) {//wait}
+
+This fucntion is taken from Embedded system - Shape the world course in Edx
+The 800000 on SysTick_wait function depends on the Clock frquency. F= 80MHz
+
+
+#define NVIC_ST_RELOAD_R    (*((volatile unsigned long *)0xE000E014))
+#define NVIC_ST_CURRENT_R   (*((volatile unsigned long *)0xE000E018))
+void SysTick_Init(void){
+  NVIC_ST_CTRL_R = 0;               // disable SysTick during setup
+  NVIC_ST_CTRL_R = 0x00000005;      // enable SysTick with core clock
+}
+
+// The delay parameter is in units of the 80 MHz core clock. (12.5 ns)
+void SysTick_Wait(unsigned long delay){
+  NVIC_ST_RELOAD_R = delay-1;  // number of counts to wait
+  NVIC_ST_CURRENT_R = 0;       // any value written to CURRENT clears
+  while((NVIC_ST_CTRL_R&0x00010000)==0){ // wait for count flag
+  }
+}
+
+
+// 800000*12.5ns equals 10ms
+void SysTick_Wait10ms(unsigned long delay){
+  unsigned long i;
+  for(i=0; i<delay; i++){
+    SysTick_Wait(800000);  // wait 10ms
+  }
+}
+
+
 Problems to take care while you are using SysTick: 
 - SysTick running at 16 MHz could only measure time differences up to 1 s, take care becasue that means it will start over and you can not track exactly the time passed. It is like analog watch with 12Uhr then start over. You should develop a way to track the counter if it return agian to set value.

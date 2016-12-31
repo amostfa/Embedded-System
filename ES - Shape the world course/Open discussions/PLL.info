@@ -6,4 +6,6 @@ It is feedback system combining a coltage controlled ocillator and a phase compa
 
 In embedded systems, we use the phase-lock-loop (PLL), which allows the software to both utilize an accurate crystal and to select how fast the computer executes.
 
-Most Microcontroller include a PLL that adjust the execution speed of the copmuter. So, why we do not just operate our programs on the fastest speed possible. Tradoff! Ya, it is actaully anything in this world, it is a tradeoff between power consumption vs speed. The faster you run your program, would require more power.
+Most Microcontroller include a PLL that adjust the execution speed of the copmuter. So, why we do not just operate our programs on the fastest speed possible. Tradoff! Ya, it is actaully anything in this world, it is a tradeoff between power consumption vs speed. The faster you run your program, would require more power. (Power in a linear relationship with fBus)
+
+For low power design, it is important to take care of this relationship between exeution speed and power consumption. Being able to utitlize PLL to dynamically control bus frequency and I/O devices is important for low-power design. So you can speed up when it is urgent and you needed. Then, you can lower down the speed on other conditions.
