@@ -1,0 +1,9 @@
+Today, we are gonna talk about Phase Lock Loop (PLL).
+
+So what is it?
+
+It is feedback system combining a coltage controlled ocillator and a phase comparator. When the phase comparator is connected, the oscillator maintains a constant phase angle relative to a reference signal. Usually, Phase-locked loops is used, for example, to generate stable output high frequency signals from a fixed low-frequency signal. 
+
+In embedded systems, we use the phase-lock-loop (PLL), which allows the software to both utilize an accurate crystal and to select how fast the computer executes.
+
+Most Microcontroller include a PLL that adjust the execution speed of the copmuter. So, why we do not just operate our programs on the fastest speed possible. Tradoff! Ya, it is actaully anything in this world, it is a tradeoff between power consumption vs speed. The faster you run your program, would require more power.
